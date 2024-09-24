@@ -14,7 +14,7 @@ import android.util.AttributeSet;
 import android.view.SurfaceView;
 
 public class Drawing extends SurfaceView {
-    // ADD COLORS HERE
+    // Color for Rectangle Objects
     private int brownPaint = 0xFF432704;
     private int yellowPaint = 0xFFFDB600;
     private int darkBrownPaint ;
@@ -24,6 +24,8 @@ public class Drawing extends SurfaceView {
     private int woodPaint = 0xFFCAAB94;
     private int bookPaint = 0xFF800E13;
     private int darkRed = 0xFF250902;
+
+    // Rectangle Objects
     private CustomElements table;
     private CustomElements pen;
     private CustomElements pencil;
@@ -39,7 +41,7 @@ public class Drawing extends SurfaceView {
         setWillNotDraw(false);
         setBackgroundColor(0xFFFFFFFF);
 
-        // Initialize the table rectangle
+        // Initialize the rectangle objects
         table = new Rectangle("Table", brownPaint, 100, 100, 1900, 800);
         pencil = new Rectangle("Pencil", yellowPaint, 200, 150, 600,180);
         pencilTip = new Rectangle("Pencil Tip", blackPaint, 600, 155,630, 170);
@@ -53,6 +55,7 @@ public class Drawing extends SurfaceView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        // Draw to Canvas
         super.onDraw(canvas);
         table.drawCanvas(canvas);
         pencil.drawCanvas(canvas);
@@ -64,24 +67,6 @@ public class Drawing extends SurfaceView {
         pencilTip.drawCanvas(canvas);
         eraser2.drawCanvas(canvas);
 
-
-
-
-//        canvas.drawRect(100, 100, 700, 400, brownPaint); // Table
-//
-//        canvas.drawRect(100, 100, 700, 400, darkBrownPaint); // Table outline
-//
-//        canvas.drawRect(120, 150, 180, 160, yellowPaint); // Pencil body
-//
-//        canvas.drawRect(175, 150, 180, 160, darkBrownPaint); // Pencil tip
-//
-//        canvas.drawRect(200, 200, 250, 210, bluePaint); // Pen
-//
-//        canvas.drawRect(300, 150, 330, 170, pinkPaint); // Eraser
-//
-//        canvas.drawRect(400, 250, 550, 260, woodPaint); // Ruler
-//
-//        canvas.drawRect(500, 150, 650, 250, bookPaint); // Book
     }
 
 }

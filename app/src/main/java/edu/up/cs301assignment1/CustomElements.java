@@ -11,7 +11,7 @@ import android.graphics.Paint;
 
 public abstract class CustomElements {
 
-    // Instance Variables: All qualities that apply to
+    // Instance Variables: All qualities that apply to all subclasses
     protected Paint myPaint = new Paint();
     protected String myName;
     protected int left, top, right, bottom;
@@ -25,6 +25,10 @@ public abstract class CustomElements {
         setColor(Color);
 
     }
+
+    /*  In Code Citation: I used code provided to us from Nuxoll's CustomElements class.
+    *   Methods like getName(), setColor(), and getColor were directly from Nux's code.
+    */
 
     public String getName() {
         return this.myName;

@@ -2,6 +2,7 @@
  * Class: CS 301
  * Author: Jazmine Cabral
  * Date: 09/20/2024
+ * Description: This class is not used at all in Part A, but I may use this in Part B.
  *
  * */
 package edu.up.cs301assignment1;
