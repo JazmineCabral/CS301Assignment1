@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         SeekBar greenSeek = findViewById(R.id.seekBarGreen);
         SeekBar blueSeek = findViewById(R.id.seekBarBlue);
 
-        TextView redProgress = findViewById(R.id.redseekbartext);
+        TextView redProgress = findViewById(R.id.redseekprogress);
         TextView greenProgress = findViewById(R.id.greenseekbartext);
         TextView blueProgress = findViewById(R.id.blueseekbartext);
 
@@ -50,5 +50,26 @@ public class MainActivity extends AppCompatActivity {
         blueSeek.setOnSeekBarChangeListener(blueSeekBarUpdate);
 
 
+        // Find the Drawing view and the TextView for element names
+        Drawing drawingView = findViewById(R.id.surfaceView4);
+        TextView currentElementTextView = findViewById(R.id.textView11);
+
+        // Create an array of elements to pass to the listener
+        CustomElements[] elements = {
+                //drawingView.table,
+                drawingView.pencil,
+                drawingView.eraser,
+                drawingView.pen,
+                drawingView.book,
+                drawingView.innerBook,
+                drawingView.ruler,
+                drawingView.pencilTip,
+                drawingView.eraser2,
+                drawingView.phone
+        };
+
+        // Set the ElementTouchListener on the Drawing view
+        drawingView.setOnTouchListener(new ElementTouchListener(elements, currentElementTextView));
     }
-}
+
+    }

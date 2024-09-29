@@ -5,7 +5,7 @@
  *
  * */
 package edu.up.cs301assignment1;
-
+import android.graphics.Rect;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
