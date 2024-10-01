@@ -6,6 +6,7 @@
  * */
 package edu.up.cs301assignment1;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -17,6 +18,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private CustomElements lastTapped = null;
+    private SeekBar redSeek, greenSeek, blueSeek;
+    private CustomElements[] elements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,22 +60,44 @@ public class MainActivity extends AppCompatActivity {
         Drawing drawingView = findViewById(R.id.surfaceView4);
         TextView currentElementTextView = findViewById(R.id.textView11);
 
-        // Create an array of elements to pass to the listener
+        // Create an array of elements that will go to the listener
         CustomElements[] elements = {
                 //drawingView.table,
                 drawingView.pencil,
                 drawingView.eraser,
                 drawingView.pen,
                 drawingView.book,
-                drawingView.innerBook,
                 drawingView.ruler,
-                drawingView.pencilTip,
                 drawingView.eraser2,
-                drawingView.phone
+                drawingView.phone,
+                drawingView.innerBook,
         };
 
-        // Set the ElementTouchListener on the Drawing view
-        drawingView.setOnTouchListener(new ElementTouchListener(elements, currentElementTextView));
+        // Set the array of elements to the drawing view
+        drawingView.setOnTouchListener(new ElementTouchListener(elements, currentElementTextView, redSeek, greenSeek, blueSeek));
+    }
+
+    private class colorListener implements SeekBar.OnSeekBarChangeListener{
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean user) {
+            if (lastTapped != null){
+                int red = redSeek.getProgress();
+                int green = greenSeek.getProgress();
+                int blue = blueSeek.getProgress();
+
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
     }
 
     }

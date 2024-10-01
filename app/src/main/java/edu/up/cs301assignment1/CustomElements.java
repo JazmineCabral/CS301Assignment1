@@ -14,7 +14,10 @@ public abstract class CustomElements {
     // Instance Variables: All qualities that apply to all subclasses
     protected Paint myPaint = new Paint();
     protected String myName;
-    protected int left, top, right, bottom;
+    protected int left;
+    protected int top;
+    protected int right;
+    protected int bottom;
 
     public CustomElements(String Name, int Color, int left, int top, int right, int bottom){
         this.myName = Name;
@@ -45,14 +48,10 @@ public abstract class CustomElements {
         this.myPaint.setColor(color);
     }
 
-    /** get the color */
+   /** get the color **/
     public int getColor() {
         return this.myPaint.getColor();
     }
 
-
-
     public abstract void drawCanvas(Canvas canvas);
-
-
 }

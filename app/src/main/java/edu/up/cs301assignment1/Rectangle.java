@@ -20,11 +20,13 @@ public class Rectangle extends CustomElements {
     public int left, right, top, bottom, color;
     public Rect rect;
 
+    // Instantiate a rectangle object
     public Rectangle(String Name, int color, int left, int top, int right, int bottom){
         super(Name, color, left, top, right, bottom);
         this.rect = new Rect(left, top, right, bottom);
     }
 
+    // Draw it to the canvas
     @Override
     public void drawCanvas(Canvas canvas) {
         canvas.drawRect(rect, myPaint);

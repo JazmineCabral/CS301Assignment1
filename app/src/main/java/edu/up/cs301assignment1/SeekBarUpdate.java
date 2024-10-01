@@ -13,6 +13,7 @@ public class SeekBarUpdate implements SeekBar.OnSeekBarChangeListener {
 
     private TextView progressText;
 
+    // Updates the text of seekbar
     public SeekBarUpdate(TextView progressText) {
         this.progressText = progressText;
     }
