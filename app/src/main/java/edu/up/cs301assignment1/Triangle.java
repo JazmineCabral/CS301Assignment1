@@ -12,6 +12,7 @@ import android.graphics.Path;
 
 public class Triangle extends CustomElements{
     public String myName;
+
     // Triangle coordinates
     private float x1, y1, x2, y2, x3, y3;
 
@@ -29,14 +30,11 @@ public class Triangle extends CustomElements{
 
     @Override
     public void drawCanvas(Canvas canvas) {
-        // Create the triangle
         Path path = new Path();
         path.moveTo(x1, y1);
         path.lineTo(x2, y2);
         path.lineTo(x3, y3);
         path.close();
-
-        // Draw the triangle on the canvas
         canvas.drawPath(path, myPaint);
     }
 }

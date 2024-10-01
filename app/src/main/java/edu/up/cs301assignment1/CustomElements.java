@@ -19,6 +19,7 @@ public abstract class CustomElements {
     protected int right;
     protected int bottom;
 
+    // CustomElements constructor
     public CustomElements(String Name, int Color, int left, int top, int right, int bottom){
         this.myName = Name;
         this.left = left;
@@ -26,7 +27,6 @@ public abstract class CustomElements {
         this.right = right;
         this.bottom = bottom;
         setColor(Color);
-
     }
 
     /*  In Code Citation: I used code provided to us from Nuxoll's CustomElements class.

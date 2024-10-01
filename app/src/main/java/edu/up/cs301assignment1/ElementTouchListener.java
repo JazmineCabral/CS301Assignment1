@@ -8,22 +8,27 @@ import android.widget.SeekBar;
 import android.graphics.Rect;
 
 public class ElementTouchListener implements View.OnTouchListener, SeekBar.OnSeekBarChangeListener {
-
-    private final CustomElements[] elements;
-    private final TextView textView;
+    // Instance variables
+    private final TextView textView, redSeekBarText, greenSeekBarText, blueSeekBarText;
     private final SeekBar redSeekBar, greenSeekBar, blueSeekBar;
     protected CustomElements lastTouched;
+    private Drawing draw;
 
-    public ElementTouchListener(CustomElements[] elements,TextView textView, SeekBar redSeekBar, SeekBar greenSeekBar, SeekBar blueSeekBar) {
-        this.elements = elements;
+    // Constructor
+    public ElementTouchListener(TextView textView, TextView redSeekBarText, TextView greenSeekBarText, TextView blueSeekBarText, SeekBar redSeekBar, SeekBar greenSeekBar, SeekBar blueSeekBar, Drawing draw) {
         this.textView = textView;
         this.redSeekBar = redSeekBar;
         this.greenSeekBar = greenSeekBar;
         this.blueSeekBar = blueSeekBar;
-//        this.seekBarText = BarText;
+        this.draw = draw;
+        this.redSeekBarText = redSeekBarText;
+        this.greenSeekBarText = greenSeekBarText;
+        this.blueSeekBarText = blueSeekBarText;
+
     }
 
-
+    /** onTouch will display the currently touched drawn elements rbg values to their
+     * corresponding seekbar **/
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -39,42 +44,51 @@ public class ElementTouchListener implements View.OnTouchListener, SeekBar.OnSee
             /* checks for a rectangle, and updates the textview with the name of the element being touched. This code
                Does not work for triangle elements, but in this context they are so small and will always be black they did
                 not need to be taken into account for the listener */
-            for (int i = elements.length - 1; i >= 0; i--) {
-                CustomElements elementsArray = elements[i];
-                if (elementsArray instanceof Rectangle) { // Check if it's a Rectangle
-                    Rectangle curRect = (Rectangle) elementsArray; // Cast to Rectangle
+            for (int i = draw.elements.length - 1; i >= 0; i--) {
+                CustomElements elementsArray = draw.elements[i];
+                if (elementsArray instanceof Rectangle) {
+                    Rectangle curRect = (Rectangle) elementsArray;
                     if (curRect.rect.contains(touchX, touchY)) {
+                        lastTouched = elementsArray;
 
                         // Update the TextView with the name of the touched elementsArray
                         textView.setText("Current Drawing Element: " + elementsArray.getName());
 
-                        int curRectColor = curRect.getColor();
+                        int curRectColor = lastTouched.getColor();
 
                         // Update the SeekBars to reflect the color of the tapped elementsArray
                         redSeekBar.setProgress(Color.red(curRectColor));
                         greenSeekBar.setProgress(Color.green(curRectColor));
                         blueSeekBar.setProgress(Color.blue(curRectColor));
 
-                        return true; // Touch was handled
+                        return true;
                     }
                 }
             }
+
         }
-        return false; // Touch was not handled
+        return false;
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
         if (lastTouched != null) {
-            // Get the current RGB values
+            // Get rgb values
             int red = redSeekBar.getProgress();
             int green = greenSeekBar.getProgress();
             int blue = blueSeekBar.getProgress();
 
-            // Set the new color of the last touched element
-            lastTouched.setColor(Color.rgb(red, green, blue));
 
+            // Set the new color of the last touched element
+            lastTouched.myPaint.setColor(Color.rgb(red, green, blue));
+
+            redSeekBarText.setText("Progress: " + red);
+            greenSeekBarText.setText("Progress: " + green);
+            blueSeekBarText.setText("Progress: " + blue);
+
+            draw.invalidate();
         }
+
     }
 
     @Override

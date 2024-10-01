@@ -3,9 +3,10 @@ package edu.up.cs301assignment1;
 import android.graphics.Canvas;
 
 public class Lines extends CustomElements {
-    // Location of beginning and end of line
+    // Instance Variables
     private float startX, startY, endX, endY;
 
+    // Constructor
     public Lines(String Name, int color, float startX, float startY, float endX, float endY) {
         super(Name, color, (int) Math.min(startX, endX), (int) Math.min(startY, endY),
                 (int) Math.max(startX, endX), (int) Math.max(startY, endY));

@@ -6,6 +6,7 @@
 * */
 package edu.up.cs301assignment1;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -27,6 +28,7 @@ public class Drawing extends SurfaceView {
     protected int darkRed = 0xFF250902;
 
     // Rectangle Objects
+    protected CustomElements[] elements;
     protected CustomElements pen;
     protected CustomElements penTip;
     protected CustomElements pencil;
@@ -42,7 +44,7 @@ public class Drawing extends SurfaceView {
     protected CustomElements rulerLine1, rulerLine2, rulerLine3, rulerLine4, rulerLine5, rulerLine6, rulerLine7, rulerLine8;
 
 
-
+    /** This function draws all elements onto the canvas**/
     public Drawing(Context context, AttributeSet attrs) {
         super(context, attrs);
         setWillNotDraw(false);
@@ -50,7 +52,6 @@ public class Drawing extends SurfaceView {
 
         // Initialize the rectangle, triangle, and line objects
         pencil = new Rectangle("Pencil", yellowPaint, 200, 150, 600,180);
-        //pencilTip = new Rectangle("Pencil Tip", blackPaint, 600, 155,630, 170);
         pencilTip = new Triangle("Pencil tip", blackPaint,600, 150, 650, 165, 600, 180 );
         eraser = new Rectangle("Eraser", pinkPaint, 150, 150 , 200, 180);
         pen = new Rectangle("Pen", bluePaint, 150, 210 , 600, 230);
@@ -66,13 +67,13 @@ public class Drawing extends SurfaceView {
         rulerLine2 = new Lines("Line 2", blackPaint,1140, 270, 1160, 270);
         rulerLine3 = new Lines("Line 3", blackPaint,1140, 300, 1175, 300);
         rulerLine4 = new Lines("Line 4", blackPaint,1140, 350, 1160, 350);
-
         rulerLine5 = new Lines("Line 1", blackPaint,1140, 380, 1140, 380);
         rulerLine6 = new Lines("Line 2", blackPaint,1140, 410, 1160, 410);
         rulerLine7 = new Lines("Line 3", blackPaint,1140, 540, 1175, 540);
         rulerLine8 = new Lines("Line 4", blackPaint,1140, 580, 1160, 580);
     }
 
+    @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         // Draw to Canvas
@@ -97,6 +98,17 @@ public class Drawing extends SurfaceView {
         rulerLine6.drawCanvas(canvas);
         rulerLine7.drawCanvas(canvas);
         rulerLine8.drawCanvas(canvas);
+
+        elements = new CustomElements[]{
+                pencil,
+                eraser,
+                pen,
+                book,
+                ruler,
+                eraser2,
+                phone,
+                innerBook,
+        };
 
     }
 
